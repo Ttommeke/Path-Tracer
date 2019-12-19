@@ -20,6 +20,7 @@ set(SOURCE_FILES
     src/kdtree.cpp
     src/texture.cpp
     src/camera.cpp
+    src/realcamera.cpp
     src/scene.cpp
     src/renderer.cpp
     lib/configfile/ConfigFile.cpp

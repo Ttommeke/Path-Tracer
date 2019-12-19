@@ -11,15 +11,13 @@
 *      $ ./pathtracer <number of samples>
 */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <getopt.h>
 #include "time.h"
 
 #include "vector.h"
 #include "material.h"
 #include "objects.h"
-#include "camera.h"
+#include "realcamera.h"
 #include "scene.h"
 #include "renderer.h"
 
@@ -85,12 +83,21 @@ int main(int argc, char *argv[]) {
     ConfigFile cf(configFilename);
 
     try {
-        Camera camera = Camera(
+        /*Camera camera = Camera(
         Vec(cf.Value("camera_position", "x"), cf.Value("camera_position", "y"), cf.Value("camera_position", "z")), 
-        Vec(cf.Value("camera_direction", "x"), cf.Value("camera_direction", "y"), cf.Value("camera_direction", "z")), 
+        Vec(cf.Value("camera_target", "x"), cf.Value("camera_target", "y"), cf.Value("camera_target", "z")), 
         cf.Value("output", "width"), 
-        cf.Value("output", "height"));     // Create camera
+        cf.Value("output", "height"));*/     // Create camera
                                                    // Create scene
+        RealCamera camera = RealCamera(
+        Vec(cf.Value("camera_position", "x"), cf.Value("camera_position", "y"), cf.Value("camera_position", "z")), 
+        Vec(cf.Value("camera_target", "x"), cf.Value("camera_target", "y"), cf.Value("camera_target", "z")), 
+        cf.Value("output", "width"), 
+        cf.Value("output", "height"),
+        cf.Value("sensor", "width"),
+        cf.Value("sensor", "height"),
+        cf.Value("iris", "distance_sensor"));
+
         Scene scene = Scene();   
 
         // Add objects to scene
@@ -114,8 +121,8 @@ int main(int argc, char *argv[]) {
         int secs = (int)diff-(hrs*3600)-(mins*60);
         printf("\rRendering (%i samples): Complete!\nTime Taken: %i hrs, %i mins, %i secs\n\n", samples, hrs, mins, secs);
         return 0;
-    } catch (const char * ex) {
-        printf(ex);
+    } catch (const char* ex) {
+        printf("Exception while calculating.");
         return -1;
     }
 

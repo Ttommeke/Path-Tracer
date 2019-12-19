@@ -3,17 +3,17 @@
 
 #include "vector.h"
 #include "scene.h"
-#include "camera.h"
+#include "realcamera.h"
 
 class Renderer {
 
 private:
     Scene *m_scene;
-    Camera *m_camera;
+    RealCamera *m_camera;
     Vec *m_pixel_buffer;
 
 public:
-    Renderer(Scene *scene, Camera *camera);
+    Renderer(Scene *scene, RealCamera *camera);
     void render(int samples=4);
     void save_image(const char * file_path);
 

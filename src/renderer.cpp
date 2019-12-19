@@ -10,7 +10,7 @@ inline double clamp(double x){ return x<0 ? 0 : x>1 ? 1 : x; }
 // Clamp to between 0-255
 inline int toInt(double x){ return int(clamp(x)*255+.5); }
 
-Renderer::Renderer(Scene *scene, Camera *camera) {
+Renderer::Renderer(Scene *scene, RealCamera *camera) {
     m_scene = scene;
     m_camera = camera;
     m_pixel_buffer = new Vec[m_camera->get_width()*m_camera->get_height()];

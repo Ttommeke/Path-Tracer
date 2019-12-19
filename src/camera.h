@@ -8,19 +8,20 @@
 class Camera {
 
 private:
-    int m_width;
     double m_width_recp;
-    int m_height;
     double m_height_recp;
     double m_ratio;
     double m_x_spacing;
     double m_x_spacing_half;
     double m_y_spacing;
     double m_y_spacing_half;
+protected:
     Vec m_position;
     Vec m_direction;
     Vec m_x_direction;
     Vec m_y_direction;
+    int m_width;
+    int m_height;
 
 public:
     Camera(Vec position, Vec target, int width, int height);
