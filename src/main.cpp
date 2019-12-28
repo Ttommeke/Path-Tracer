@@ -96,7 +96,9 @@ int main(int argc, char *argv[]) {
         cf.Value("output", "height"),
         cf.Value("sensor", "width"),
         cf.Value("sensor", "height"),
-        cf.Value("iris", "distance_sensor"));
+        cf.Value("lens", "focal_length"),
+        cf.Value("lens", "focus_distance"),
+        cf.Value("lens", "f_stop"));
 
         Scene scene = Scene();   
 

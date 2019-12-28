@@ -1,17 +1,27 @@
 #include "ray.h"
 #include "realcamera.h"
 
-RealCamera::RealCamera(Vec position, Vec target, int width, int height, double widthSensor, double heightSensor, double distanceSensor) : Camera(position, target, width, height) {
+RealCamera::RealCamera(Vec position, 
+        Vec target, 
+        int width, 
+        int height, 
+        double widthSensor, 
+        double heightSensor,
+        double focalLength,
+        double focusDistance,
+        double fStop) : Camera(position, target, width, height) {
     this->m_sensor_width = widthSensor;
     this->m_sensor_height = heightSensor;
-    this->m_sensor_distance = distanceSensor;
+    this->m_focal_length = focalLength;
+    this->m_focus_distance = focusDistance;
+    this->m_f_stop = fStop;
 
     this->m_temp_x = m_x_direction*m_sensor_width;
     this->m_temp_y = m_y_direction*m_sensor_height;
 
     this->m_temp_start = m_position;
 
-    this->m_temp_start = this->m_temp_start - m_direction*m_sensor_distance;
+    this->m_temp_start = this->m_temp_start - m_direction*m_focal_length;
     this->m_temp_start = this->m_temp_start + m_temp_x/2;
     this->m_temp_start = this->m_temp_start - m_temp_y/2;
 }
